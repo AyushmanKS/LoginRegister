@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: EdgeInsets.all(20),
               child: Text(
-                'Go ahead and setup your account',
+                'Go ahead and set up \nyour account',
                 style: TextStyle(color: Colors.white,fontSize: 30),
               ),
             )
