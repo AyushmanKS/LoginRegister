@@ -24,7 +24,10 @@ class _SignupPageState extends State<SignupPage> {
 
   // register new acount
   registration() async {
-    if (password != null) {
+    if (password != null &&
+        password.length < 6 &&
+        email != null &&
+        name != null) {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
@@ -40,7 +43,32 @@ class _SignupPageState extends State<SignupPage> {
                       password: password,
                     )));
       } catch (e) {
-        print('error in registration: $e');
+        String errorMessage = "Registration failed";
+
+        if (e is FirebaseAuthException) {
+          switch (e.code) {
+            case 'email-already-in-use':
+              errorMessage = "This email is already in use.";
+              break;
+            case 'invalid-email':
+              errorMessage = "The email address is not valid.";
+              break;
+            case 'operation-not-allowed':
+              errorMessage = "Email/password accounts are not enabled.";
+              break;
+            case 'weak-password':
+              errorMessage = "The password is too weak.";
+              break;
+            default:
+              errorMessage = "Credentials are empty or undefined.";
+          }
+        } else {
+          errorMessage = "An error occurred: ${e.toString()}";
+        }
+
+        print('Error in registration: $e');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(errorMessage, style: const TextStyle(fontSize: 14))));
       }
     }
   }

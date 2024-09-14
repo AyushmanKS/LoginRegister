@@ -32,7 +32,32 @@ class _LoginPageState extends State<LoginPage> {
                     password: password,
                   )));
     } catch (e) {
-      print('error in Logging in: $e');
+      String errorMessage = "Login failed";
+
+      if (e is FirebaseAuthException) {
+        switch (e.code) {
+          case 'invalid-email':
+            errorMessage = "The email address is invalid.";
+            break;
+          case 'user-disabled':
+            errorMessage = "This user has been disabled.";
+            break;
+          case 'user-not-found':
+            errorMessage = "No user found for this email.";
+            break;
+          case 'wrong-password':
+            errorMessage = "Wrong password provided.";
+            break;
+          default:
+            errorMessage = "Credentials are empty or undefined.";
+        }
+      } else {
+        errorMessage = "An error occurred: ${e.toString()}";
+      }
+
+      print('Error in Logging in: $e');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(errorMessage, style: const TextStyle(fontSize: 14))));
     }
   }
 
