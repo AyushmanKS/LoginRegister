@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login_register/components/custom_text_field.dart';
+import 'package:login_register/pages/home_page.dart';
 import 'package:login_register/pages/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,9 +13,22 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isChecked = false;
+  String email = "", password = "";
 
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+
+  LoginUser() async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    } catch (e) {
+      print('error in Logging in: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -234,21 +249,30 @@ class _LoginPageState extends State<LoginPage> {
 
                           const SizedBox(height: 12),
 
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 13.0, horizontal: 30.0),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF2863eb),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w500),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                email = emailController.text;
+                                password = passwordController.text;
+                              });
+                              LoginUser();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 13.0, horizontal: 30.0),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF2863eb),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
                           ),

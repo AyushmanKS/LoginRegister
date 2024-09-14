@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:login_register/components/custom_text_field.dart';
+import 'package:login_register/pages/home_page.dart';
 import 'package:login_register/pages/login_page.dart';
 
 class SignupPage extends StatefulWidget {
@@ -28,15 +28,15 @@ class _SignupPageState extends State<SignupPage> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              "Registered Successfuly",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-        );
-      } catch (e) {}
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Registered Successfuly",
+                style: TextStyle(fontSize: 20))));
+
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      } catch (e) {
+        print('error in registration: $e');
+      }
     }
   }
 
@@ -241,21 +241,31 @@ class _SignupPageState extends State<SignupPage> {
                           const SizedBox(height: 15),
 
                           // Register button
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 13.0, horizontal: 30.0),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF2863eb),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Register",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w500),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                name = nameController.text;
+                                email = emailController.text;
+                                password = passwordController.text;
+                              });
+                              registration();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 13.0, horizontal: 30.0),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF2863eb),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "Register",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
                           ),
