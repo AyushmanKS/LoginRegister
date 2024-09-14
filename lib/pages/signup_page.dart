@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:login_register/pages/signup_page.dart';
+import 'package:login_register/pages/login_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   bool isChecked = false;
-  bool isLoginActive = false;
+  bool isRegisterActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -93,90 +93,104 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 8.0),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFe2e8f0),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        isLoginActive = true;
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: isLoginActive ? Colors.white : Colors.transparent,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: const Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Login',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500),
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 8.0),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFe2e8f0),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        // Navigate to login page
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LoginPage()));
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: Colors.white,
+                                          border: Border.all(
+                                            color: isRegisterActive? Colors.transparent : Colors.white,
+                                            width: 2.0,
                                           ),
-                                        ],
+                                        ),
+                                        child: const Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Login',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(width: 2),
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      // Navigate to sign up page
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SignupPage()),
-                                      );
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-                                        border: Border.all(
-                                          color: isLoginActive ? Colors.transparent : Colors.white,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: const Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Register',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                                color: Color(0xFF6a7b8c)),
+                                  const SizedBox(width: 2),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          border: Border.all(
+                                            color: isRegisterActive? Colors.white : Colors.transparent,
+                                            width: 2.0,
                                           ),
-                                        ],
+                                        ),
+                                        child: const Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Register',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xFF6a7b8c)),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              )),
+
+                          const SizedBox(height: 28),
+
+                          // Name Text field
+                          const TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Name',
+                              hintStyle: TextStyle(color: Color(0xFF6a7b8c)),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(28)),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.email_outlined,
+                                color: Color(0xFF2863eb),
+                              ),
                             ),
                           ),
 
-                          const SizedBox(height: 28),
+                          const SizedBox(height: 20),
 
                           // Email Text field
                           const TextField(
@@ -212,40 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
 
-                          const SizedBox(height: 5),
-
-                          Row(
-                            children: [
-                              Theme(
-                                data: Theme.of(context).copyWith(
-                                    unselectedWidgetColor:
-                                        const Color(0xFF2863EB)),
-                                child: Checkbox(
-                                  value: isChecked,
-                                  activeColor: const Color(0xFF2863EB),
-                                  checkColor: Colors.white,
-                                  side: const BorderSide(
-                                      color: Color(0xFF2863EB), width: 2),
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      isChecked = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                              const Text('Remember me'),
-                              const Spacer(),
-                              const Text(
-                                'Forget Password?',
-                                style: TextStyle(
-                                  color: Color(0xFF2863eb),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-
-                          const SizedBox(height: 12),
+                          const SizedBox(height: 15),
 
                           Container(
                             width: MediaQuery.of(context).size.width,
@@ -257,7 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             child: const Center(
                               child: Text(
-                                "Login",
+                                "Register",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 22.0,
@@ -274,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Text(
-                                  'Or login with',
+                                  'Or register using',
                                   style: TextStyle(color: Color(0xFF6a7b8c)),
                                 ),
                               ),
