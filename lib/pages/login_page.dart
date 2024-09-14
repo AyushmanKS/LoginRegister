@@ -231,6 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                               Icons.email_outlined,
                               color: Color(0xFF2863eb),
                             ),
+                            secureText: false,
                             controller: emailController,
                           ),
 
@@ -243,6 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                               Icons.lock_outline,
                               color: Color(0xFF2863eb),
                             ),
+                            secureText: true,
                             controller: passwordController,
                           ),
 

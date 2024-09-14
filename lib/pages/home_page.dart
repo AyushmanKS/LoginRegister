@@ -33,9 +33,9 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
-                    Icons.home,
-                    color: Colors.white,
-                    size: 30,
+                    Icons.home_outlined,
+                    color: Color(0xFF2863eb),
+                    size: 35,
                   ),
                   const SizedBox(width: 10),
                   Text(
