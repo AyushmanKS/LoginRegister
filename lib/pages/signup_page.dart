@@ -33,7 +33,12 @@ class _SignupPageState extends State<SignupPage> {
                 style: TextStyle(fontSize: 20))));
 
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => HomePage(
+                      email: email,
+                      password: password,
+                    )));
       } catch (e) {
         print('error in registration: $e');
       }

@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  final String email;
+  final String password;
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  const HomePage({super.key, required this.email, required this.password});
 
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Welcome $email'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Email: $email'),
+            const SizedBox(height: 10),
+            Text('Password: $password'),
+          ],
+        ),
+      ),
+    );
   }
 }

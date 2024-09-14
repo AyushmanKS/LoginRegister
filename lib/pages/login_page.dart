@@ -24,7 +24,12 @@ class _LoginPageState extends State<LoginPage> {
           .signInWithEmailAndPassword(email: email, password: password);
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomePage(
+                    email: email,
+                    password: password,
+                  )));
     } catch (e) {
       print('error in Logging in: $e');
     }
