@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:login_register/components/custom_text_field.dart';
 import 'package:login_register/pages/login_page.dart';
@@ -11,7 +13,6 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   bool isChecked = false;
-  bool isRegisterActive = false;
 
   String email = "";
   String password = "";
@@ -20,6 +21,24 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController nameController = new TextEditingController();
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+
+  // register new acount
+  registration() async {
+    if (password != null) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              "Registered Successfuly",
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        );
+      } catch (e) {}
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,11 +146,9 @@ class _SignupPageState extends State<SignupPage> {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(50),
-                                          color: Colors.white,
+                                          color: Colors.transparent,
                                           border: Border.all(
-                                            color: isRegisterActive
-                                                ? Colors.transparent
-                                                : Colors.white,
+                                            color: Colors.transparent,
                                             width: 2.0,
                                           ),
                                         ),
@@ -143,7 +160,8 @@ class _SignupPageState extends State<SignupPage> {
                                               'Login',
                                               style: TextStyle(
                                                   fontSize: 16,
-                                                  fontWeight: FontWeight.w500),
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xFF6a7b8c)),
                                             ),
                                           ],
                                         ),
@@ -157,12 +175,11 @@ class _SignupPageState extends State<SignupPage> {
                                       child: Container(
                                         height: 50,
                                         decoration: BoxDecoration(
+                                          color: Colors.white,
                                           borderRadius:
                                               BorderRadius.circular(50),
                                           border: Border.all(
-                                            color: isRegisterActive
-                                                ? Colors.white
-                                                : Colors.transparent,
+                                            color: Colors.transparent,
                                             width: 2.0,
                                           ),
                                         ),
@@ -175,7 +192,7 @@ class _SignupPageState extends State<SignupPage> {
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color(0xFF6a7b8c)),
+                                                  color: Colors.black),
                                             ),
                                           ],
                                         ),

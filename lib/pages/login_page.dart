@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isChecked = false;
-  bool isLoginActive = false;
 
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
@@ -109,20 +108,14 @@ class _LoginPageState extends State<LoginPage> {
                               children: [
                                 Expanded(
                                   child: InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        isLoginActive = true;
-                                      });
-                                    },
+                                    onTap: () {},
                                     child: Container(
                                       height: 50,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(50),
                                         color: Colors.white,
                                         border: Border.all(
-                                          color: isLoginActive
-                                              ? Colors.white
-                                              : Colors.transparent,
+                                          color: Colors.white,
                                           width: 2.0,
                                         ),
                                       ),
@@ -158,9 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(50),
                                         border: Border.all(
-                                          color: isLoginActive
-                                              ? Colors.transparent
-                                              : Colors.white,
+                                          color: Colors.transparent,
                                           width: 2.0,
                                         ),
                                       ),
