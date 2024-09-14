@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_register/components/custom_text_field.dart';
 import 'package:login_register/pages/login_page.dart';
 
 class SignupPage extends StatefulWidget {
@@ -11,6 +12,14 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   bool isChecked = false;
   bool isRegisterActive = false;
+
+  String email = "";
+  String password = "";
+  String name = "";
+
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +129,9 @@ class _SignupPageState extends State<SignupPage> {
                                               BorderRadius.circular(50),
                                           color: Colors.white,
                                           border: Border.all(
-                                            color: isRegisterActive? Colors.transparent : Colors.white,
+                                            color: isRegisterActive
+                                                ? Colors.transparent
+                                                : Colors.white,
                                             width: 2.0,
                                           ),
                                         ),
@@ -149,7 +160,9 @@ class _SignupPageState extends State<SignupPage> {
                                           borderRadius:
                                               BorderRadius.circular(50),
                                           border: Border.all(
-                                            color: isRegisterActive? Colors.white : Colors.transparent,
+                                            color: isRegisterActive
+                                                ? Colors.white
+                                                : Colors.transparent,
                                             width: 2.0,
                                           ),
                                         ),
@@ -175,59 +188,42 @@ class _SignupPageState extends State<SignupPage> {
                           const SizedBox(height: 28),
 
                           // Name Text field
-                          const TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Name',
-                              hintStyle: TextStyle(color: Color(0xFF6a7b8c)),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(28)),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.email_outlined,
-                                color: Color(0xFF2863eb),
-                              ),
+                          CustomTextField(
+                            hintText: 'Name',
+                            icon: const Icon(
+                              Icons.person,
+                              color: Color(0xFF2863eb),
                             ),
+                            controller: nameController,
                           ),
 
                           const SizedBox(height: 20),
 
                           // Email Text field
-                          const TextField(
-                            decoration: InputDecoration(
-                              hintText: 'E-mail ID',
-                              hintStyle: TextStyle(color: Color(0xFF6a7b8c)),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(28)),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.email_outlined,
-                                color: Color(0xFF2863eb),
-                              ),
+                          CustomTextField(
+                            hintText: 'E-mail ID',
+                            icon: const Icon(
+                              Icons.email_outlined,
+                              color: Color(0xFF2863eb),
                             ),
+                            controller: emailController,
                           ),
 
                           const SizedBox(height: 20),
 
                           // Password Text field
-                          const TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Password',
-                              hintStyle: TextStyle(color: Color(0xFF6a7b8c)),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(28)),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.lock_outline_sharp,
-                                color: Color(0xFF2863eb),
-                              ),
+                          CustomTextField(
+                            hintText: 'Password',
+                            icon: const Icon(
+                              Icons.lock_outline,
+                              color: Color(0xFF2863eb),
                             ),
+                            controller: passwordController,
                           ),
 
                           const SizedBox(height: 15),
 
+                          // Register button
                           Container(
                             width: MediaQuery.of(context).size.width,
                             padding: const EdgeInsets.symmetric(

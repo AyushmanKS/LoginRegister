@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_register/components/custom_text_field.dart';
 import 'package:login_register/pages/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,6 +12,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool isChecked = false;
   bool isLoginActive = false;
+
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +120,9 @@ class _LoginPageState extends State<LoginPage> {
                                         borderRadius: BorderRadius.circular(50),
                                         color: Colors.white,
                                         border: Border.all(
-                                          color: isLoginActive ? Colors.white : Colors.transparent,
+                                          color: isLoginActive
+                                              ? Colors.white
+                                              : Colors.transparent,
                                           width: 2.0,
                                         ),
                                       ),
@@ -152,7 +158,9 @@ class _LoginPageState extends State<LoginPage> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(50),
                                         border: Border.all(
-                                          color: isLoginActive ? Colors.transparent : Colors.white,
+                                          color: isLoginActive
+                                              ? Colors.transparent
+                                              : Colors.white,
                                           width: 2.0,
                                         ),
                                       ),
@@ -179,37 +187,25 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(height: 28),
 
                           // Email Text field
-                          const TextField(
-                            decoration: InputDecoration(
-                              hintText: 'E-mail ID',
-                              hintStyle: TextStyle(color: Color(0xFF6a7b8c)),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(28)),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.email_outlined,
-                                color: Color(0xFF2863eb),
-                              ),
+                          CustomTextField(
+                            hintText: 'E-mail ID',
+                            icon: const Icon(
+                              Icons.email_outlined,
+                              color: Color(0xFF2863eb),
                             ),
+                            controller: emailController,
                           ),
 
                           const SizedBox(height: 20),
 
                           // Password Text field
-                          const TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Password',
-                              hintStyle: TextStyle(color: Color(0xFF6a7b8c)),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(28)),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.lock_outline_sharp,
-                                color: Color(0xFF2863eb),
-                              ),
+                          CustomTextField(
+                            hintText: 'Password',
+                            icon: const Icon(
+                              Icons.lock_outline,
+                              color: Color(0xFF2863eb),
                             ),
+                            controller: passwordController,
                           ),
 
                           const SizedBox(height: 5),
