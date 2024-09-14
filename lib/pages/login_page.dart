@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
 
+  // login user
   LoginUser() async {
     try {
       await FirebaseAuth.instance
@@ -44,7 +45,8 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.symmetric(vertical: 5),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.centerLeft,
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
               colors: [
                 Color(0xFF253143),
                 Color(0xFF172133),
@@ -159,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: InkWell(
                                     onTap: () {
                                       // Navigate to sign up page
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>

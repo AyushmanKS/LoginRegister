@@ -140,7 +140,7 @@ class _SignupPageState extends State<SignupPage> {
                                     child: InkWell(
                                       onTap: () {
                                         // Navigate to login page
-                                        Navigator.push(
+                                        Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
