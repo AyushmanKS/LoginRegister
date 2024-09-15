@@ -1,24 +1,6 @@
-<<<<<<< HEAD
-# LoginRegister
-=======
-<<<<<<< HEAD
-# LoginRegister
-=======
-# login_register
+# A Flutter app to Login Register usinf Firebase email/password login/signup
+![Login screen](https://github.com/user-attachments/assets/d59bd4f7-e688-4c53-a6b0-ce8d0357a1db)
+![Registration screen](https://github.com/user-attachments/assets/8aff84ff-5074-4437-88a2-13d9af72f720)
+![Home screen](https://github.com/user-attachments/assets/172ec5dd-96ee-4747-a53f-5b5f9bcf90d5)
 
-A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> 9744e94 (initial commit)
->>>>>>> d884371 (initial commit)
